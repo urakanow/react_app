@@ -23,12 +23,14 @@ jobs:
         run: npm install
 
       - name: Build React App
+        env:
+          CI: ""
         run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: /build
+          folder: build
           clean: true
           force: true
