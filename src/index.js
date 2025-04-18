@@ -7,7 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import PersonalPage from './components/PersonalPage';
 import Layout from './components/Layout';
 
-const basename = process.env.NODE_ENV === 'production' ? '/react_app' : '/';
+//const basename = process.env.NODE_ENV === 'production' ? '/react_app' : '/';
+const basename = process.env.REACT_APP_BASENAME;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
