@@ -1,0 +1,38 @@
+name: Deploy Frontend to Github pages
+
+on:
+  push:
+    branches:
+      - staging
+permissions:
+  contents: write
+
+jobs:
+  frontend-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build React App
+        env:
+          CI: ""
+          REACT_APP_BASE_URL: "https://web-application1-staging-eafed3dd19f8.herokuapp.com"
+          REACT_APP_BASENAME: /staging
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages-staging
+          folder: build
+          clean: true
+          force: true
